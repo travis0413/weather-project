@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import { ReactComponent as DayThunderstorm } from "./../images/day-thunderstorm.svg";
 import { ReactComponent as DayClear } from "./../images/day-clear.svg";
@@ -15,7 +15,7 @@ import { ReactComponent as NightFog } from "./../images/night-fog.svg";
 import { ReactComponent as NightPartiallyClearWithRain } from "./../images/night-partially-clear-with-rain.svg";
 import { ReactComponent as NightSnowing } from "./../images/night-snowing.svg";
 
-const WeatherIcon = () => {
+const WeatherIcon = ({ weatherCode, moment }) => {
   const IconContainer = styled.div`
     flex-basis: 30%;
     svg {
@@ -65,11 +65,13 @@ const WeatherIcon = () => {
     return weatherType;
   };
 
-  return (
-    <IconContainer>
-      <DayCloudy />
-    </IconContainer>
-  );
+  const weatherType = useMemo(
+    () => weatherCode2Type(weatherCode),
+    [weatherCode]
+  ); // 將天氣代碼轉成天氣型態
+  const weatherIcon = weatherIcons[moment][weatherType]; // 根據天氣型態和 moment 取得對應的圖示
+
+  return <IconContainer>{weatherIcon}</IconContainer>;
 };
 
 export default WeatherIcon;
