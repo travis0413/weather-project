@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 const useWeatherAPI = ({ locationName, stationName, authorizationKey }) => {
   const [weatherElement, setWeatherElement] = useState({
-    locationName: "",
+    stationName: "",
     description: "",
     windSpeed: 0,
     temperature: 0,
@@ -22,10 +22,9 @@ const useWeatherAPI = ({ locationName, stationName, authorizationKey }) => {
       })
       .then((data) => {
         const stationData = data.records.Station[0];
-
         return {
           observationTime: stationData.ObsTime.DateTime,
-          locationName: stationData.StationName,
+          stationName: stationData.StationName,
           temperature: stationData.WeatherElement.AirTemperature,
           windSpeed: stationData.WeatherElement.WindSpeed,
         };

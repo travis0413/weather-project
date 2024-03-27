@@ -49,22 +49,24 @@ export const getMoment = (locationName) => {
 
 export const availableLocations = [
   {
-    cityName: "宜蘭縣",
-    locationName: "宜蘭",
+    locationName: "宜蘭縣",
+    stationName: "宜蘭",
     sunriseCityName: "宜蘭縣",
   },
   {
-    cityName: "桃園市",
-    locationName: "新屋",
+    locationName: "桃園市",
+    stationName: "新屋",
     sunriseCityName: "桃園市",
   },
   {
-    cityName: "臺北市",
-    locationName: "臺北",
+    locationName: "臺北市",
+    stationName: "臺北",
     sunriseCityName: "臺北市",
   },
 ];
 
 export const findLocation = (cityName) => {
-  return availableLocations.find((location) => location.cityName === cityName);
+  return availableLocations.find(
+    (location) => location.locationName === cityName
+  );
 };
